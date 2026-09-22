@@ -38,8 +38,16 @@ export default function App() {
       typ: 'Manga', 
       bild: 'https://m.media-amazon.com/images/M/MV5BZjliODY5MzQtMmViZC00MTZmLWFhMWMtMjMwM2I3OGY1MTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' 
     },
-    { titel: 'Death Note', typ: 'Anime' },
-    { titel: 'Demon Slayer', typ: 'Manga' }
+    { 
+      titel: 'Death Note', 
+      typ: 'Anime', 
+      bild: 'https://m.media-amazon.com/images/M/MV5BYTgyZDhmMTEtZDFhNi00MTc4LTg3NjUtYWJlNGE5Mzk2NzMxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' 
+    },
+    { 
+      titel: 'Demon Slayer', 
+      typ: 'Manga', 
+      bild: 'https://m.media-amazon.com/images/M/MV5BMWU1OGEwNmQtNGM3MS00YTYyLThmYmMtN2FjYzQzNzNmNTE0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' 
+    }
   ];
 
   const filtreradKatalog = () =>
