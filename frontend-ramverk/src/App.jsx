@@ -33,7 +33,11 @@ export default function App() {
       typ: 'Anime', 
       bild: 'https://m.media-amazon.com/images/M/MV5BMTNjNGU4NTUtYmVjMy00YjRiLTkxMWUtNzZkMDNiYjZhNmViXkEyXkFqcGc@._V1_.jpg' 
     },
-    { titel: 'Attack on Titan', typ: 'Manga' },
+    { 
+      titel: 'Attack on Titan', 
+      typ: 'Manga', 
+      bild: 'https://m.media-amazon.com/images/M/MV5BZjliODY5MzQtMmViZC00MTZmLWFhMWMtMjMwM2I3OGY1MTRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' 
+    },
     { titel: 'Death Note', typ: 'Anime' },
     { titel: 'Demon Slayer', typ: 'Manga' }
   ];
