@@ -1,106 +1,58 @@
-import { createSignal } from 'solid-js'
-import heroImg from './assets/hero.png'
-import solidLogo from './assets/solid.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { createSignal, For, Show } from 'solid-js';
 
-function App() {
-  const [count, setCount] = createSignal(0)
-
+function Kort(props) {
   return (
-    <>
-      <section id="center">
-        <div class="hero">
-          <img src={heroImg} class="base" width="170" height="179" alt="" />
-          <img src={solidLogo} class="framework" alt="Solid logo" />
-          <img src={viteLogo} class="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          class="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count()}
-        </button>
-      </section>
-
-      <div class="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg class="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img class="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://solidjs.com/" target="_blank">
-                <img class="button-icon" src={solidLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg class="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg class="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div class="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <div>
+      <img 
+        src={props.bild} 
+        alt={props.titel} 
+        style={{ width: '120px', height: '170px', "object-fit": 'cover' }} 
+      />
+      <h3>{props.titel}</h3>
+      <p>Typ: {props.typ}</p>
+    </div>
+  );
 }
 
-export default App
+export default function App() {
+  const [sokord, setSokord] = createSignal('');
+
+  const katalog = [
+    { 
+      titel: 'Naruto', 
+      typ: 'Anime', 
+      bild: 'https://m.media-amazon.com/images/M/MV5BZTNjOWI0ZTAtOGY1OS00ZGU0LWEyOWYtMjhkYjdlYmVjMDk2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' 
+    },
+    { titel: 'Dragon Ball', typ: 'Manga' },
+    { titel: 'One Piece', typ: 'Anime' },
+    { titel: 'Attack on Titan', typ: 'Manga' },
+    { titel: 'Death Note', typ: 'Anime' },
+    { titel: 'Demon Slayer', typ: 'Manga' }
+  ];
+
+  const filtreradKatalog = () =>
+    katalog.filter((item) =>
+      item.titel.toLowerCase().includes(sokord().toLowerCase())
+    );
+
+  return (
+    <div>
+      <h1>Crunchyroll</h1>
+
+      <input
+        type="text"
+        placeholder="Sök..."
+        value={sokord()}
+        onInput={(e) => setSokord(e.target.value)}
+      />
+
+      <For each={filtreradKatalog()}>
+        {(item) => <Kort titel={item.titel} typ={item.typ} bild={item.bild} />}
+      </For>
+
+      <Show when={filtreradKatalog().length === 0}>
+        <p>Inget hittades.</p>
+      </Show>
+    </div>
+  );
+}
